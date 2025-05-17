@@ -1,0 +1,141 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "b-blocks/virtual-tour",
+  "version": "1.0.0",
+  "title": "Virtual Tour",
+  "category": "widgets",
+  "description": "Short description of the Pin Creator",
+  "keywords": [
+    "Pin Creator"
+  ],
+  "textdomain": "b-blocks",
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "wide"
+    },
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "tour_360": {
+      "type": "array",
+      "default": [
+        {
+          "tour_id": "house",
+          "tour_img": "",
+          "tourTitleAuthor": true,
+          "title": "Spring House or Dairy",
+          "author": "bPlugins",
+          "tour_hotSpot": true,
+          "hotSpot_txt": "Spring House",
+          "target_id": "",
+          "default_data": false
+        }
+      ]
+    },
+    "scenes": {
+      "type": "array",
+      "default": [
+        {
+          "tour_id": "circle",
+          "title": "Mason Circle",
+          "hfov": 110,
+          "pitch": 0,
+          "yaw": 5,
+          "type": "equirectangular",
+          "panorama": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Panorama_of_the_courtyard_of_the_Great_Mosque_of_Kairouan.jpg",
+          "hotSpots": [
+            {
+              "pitch": -2.1,
+              "yaw": 132.9,
+              "type": "scene",
+              "text": "Spring House or Dairy",
+              "sceneId": "house"
+            }
+          ]
+        },
+        {
+          "tour_id": "house",
+          "title": "Spring House or Dairy",
+          "hfov": 110,
+          "yaw": 5,
+          "type": "equirectangular",
+          "panorama": "https://plus.unsplash.com/premium_photo-1661887713388-6f093435b59a?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGFub3JhbWljfGVufDB8fDB8fHww",
+          "hotSpots": [
+            {
+              "pitch": -0.6,
+              "yaw": 37.1,
+              "type": "scene",
+              "text": "Mason Circle",
+              "sceneId": "circle",
+              "targetYaw": -23,
+              "targetPitch": 2
+            }
+          ]
+        }
+      ]
+    },
+    "options": {
+      "type": "object",
+      "default": {
+        "isRotate": true,
+        "autoRotateSpeed": 1,
+        "autoRotateInactivityDelay": 3000,
+        "hideDefaultCtrl": false,
+        "initialView": false,
+        "initialViewPosition": {
+          "pitch": 0,
+          "yaw": 0,
+          "hfov": 120
+        },
+        "autoLoad": true,
+        "draggable": true,
+        "compass": false,
+        "mouseZoom": true,
+        "disableKeyboardCtrl": false,
+        "doubleClickZoom": true
+      }
+    },
+    "hotspotData": {
+      "type": "array",
+      "default": []
+    },
+    "layout": {
+      "type": "object",
+      "default": {
+        "alignSl": {
+          "desktop": "center",
+          "tablet": "center",
+          "mobile": "center"
+        },
+        "width": {
+          "desktop": "100%",
+          "tablet": "100%",
+          "mobile": "100%"
+        },
+        "height": {
+          "desktop": "320px",
+          "tablet": "300px",
+          "mobile": "250px"
+        }
+      }
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false
+  },
+  "example": {
+    "attributes": {}
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./view.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}
