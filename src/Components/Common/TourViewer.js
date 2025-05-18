@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { addTempHotspot, createModifiedHotspots, handleMouseDownEvent, handleMouseUpEvent, initializePannellumViewer, saveHotspot } from '../../utils/functions';
 import PopupWrapper from './PopupWrapper';
 
-const TourViewer = ({ attributes, setAttributes, isBackend = false, currentScene }) => {
+const TourViewer = ({ attributes, setAttributes, isBackend = false, currentScene, setCurrentScene }) => {
     const { scenes } = attributes;
     const { hotSpots: hotspotData = [] } = currentScene || {};
     const panoRef = useRef(null);
@@ -45,13 +45,17 @@ const TourViewer = ({ attributes, setAttributes, isBackend = false, currentScene
             modifiedScenes[scene.tour_id] = {
                 ...scene,
                 hotSpots: scene.hotSpots.map((spot, index) =>
-                    createModifiedHotspots(scenes,currentScene,spot, isBackend, index, setPopupData, setAttributes)
+                    createModifiedHotspots(scenes, currentScene, spot, isBackend, index, setPopupData, setAttributes)
                 )
             };
         });
 
         const viewer = initializePannellumViewer(panoRef, modifiedScenes);
         window.viewer = viewer;
+
+        viewer.on('scenechange', (sceneId) => {
+            setCurrentScene(scenes.find((scene) => scene.tour_id === sceneId))
+        })
         
         viewerRef.current = viewer;
         if (currentScene && viewerRef.current) {
@@ -90,7 +94,7 @@ const TourViewer = ({ attributes, setAttributes, isBackend = false, currentScene
     return (
         <div className='tourViewerWrapper' >
             <div className='tourViewer' ref={panoRef} />
-            {popupData && isBackend && <PopupWrapper {...{ scenes, setAttributes, hotspotData, popupData, setPopupData, isDropdownOpen, setIsDropdownOpen, setTempHotspot, handleSaveHotspot }} />}
+            {popupData && isBackend && <PopupWrapper {...{ scenes, setAttributes, currentScene, hotspotData, popupData, setPopupData, isDropdownOpen, setIsDropdownOpen, setTempHotspot, handleSaveHotspot }} />}
         </div>
     );
 };

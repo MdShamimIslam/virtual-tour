@@ -19,7 +19,7 @@ const Edit = (props) => {
 
         {!isSelected && <div className="bPlBlockBeforeSelect"></div>}
       
-        <TourViewer {...{ attributes, setAttributes, isBackend: true, currentScene }}/> 
+        <TourViewer {...{ attributes, setAttributes, isBackend: true, currentScene, setCurrentScene }}/> 
       
       </div>
 

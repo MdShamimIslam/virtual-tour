@@ -68,9 +68,12 @@ export const saveHotspot = (popupData, scenes, currentScene, setAttributes, setP
           lookAt: {
               pitch: popupData.targetHotspot.pitch,
               yaw: popupData.targetHotspot.yaw,
-          }
+          },
+          targetPitch: popupData.targetHotspot.pitch,
+          targetYaw: popupData.targetHotspot.yaw,
       })
   };
+
 
   const newScenes = produce(scenes, (draft) => {
       draft.map((scene) => {

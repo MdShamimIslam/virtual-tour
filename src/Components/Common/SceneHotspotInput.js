@@ -1,7 +1,19 @@
+import React, { useEffect } from "react";
+
 import SceneSelect from "./SceneSelect";
 import TargetSelect from "./TargetSelect";
 
-const SceneHotspotInput = ({ scenes, setAttributes, popupData, setPopupData, hotspotData, isDropdownOpen, setIsDropdownOpen }) => {
+const SceneHotspotInput = ({ scenes, setAttributes,currentScene, popupData, setPopupData, hotspotData, isDropdownOpen, setIsDropdownOpen }) => {
+    
+    useEffect(() => {
+        if(currentScene.tour_id !== scenes[0].tour_id){
+        setPopupData({
+            ...popupData,
+            sceneId: scenes[0].tour_id
+        })
+        }
+    }, [])
+
     return (
         <>
             {hotspotData.length > 0 ?

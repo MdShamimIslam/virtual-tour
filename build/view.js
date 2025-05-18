@@ -66,6 +66,7 @@ __webpack_require__.r(__webpack_exports__);
 const PopupWrapper = ({
   scenes,
   setAttributes,
+  currentScene,
   popupData,
   setPopupData,
   hotspotData,
@@ -87,6 +88,7 @@ const PopupWrapper = ({
   }), popupData.type === 'scene' && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_SceneHotspotInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
     scenes,
     setAttributes,
+    currentScene,
     popupData,
     setPopupData,
     hotspotData,
@@ -161,15 +163,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 const SceneHotspotInput = ({
   scenes,
   setAttributes,
+  currentScene,
   popupData,
   setPopupData,
   hotspotData,
   isDropdownOpen,
   setIsDropdownOpen
 }) => {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (currentScene.tour_id !== scenes[0].tour_id) {
+      setPopupData({
+        ...popupData,
+        sceneId: scenes[0].tour_id
+      });
+    }
+  }, []);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, hotspotData.length > 0 ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "sceneWrap"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_SceneSelect__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -404,7 +416,8 @@ const TourViewer = ({
   attributes,
   setAttributes,
   isBackend = false,
-  currentScene
+  currentScene,
+  setCurrentScene
 }) => {
   const {
     scenes
@@ -450,6 +463,9 @@ const TourViewer = ({
     });
     const viewer = (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.initializePannellumViewer)(panoRef, modifiedScenes);
     window.viewer = viewer;
+    viewer.on('scenechange', sceneId => {
+      setCurrentScene(scenes.find(scene => scene.tour_id === sceneId));
+    });
     viewerRef.current = viewer;
     if (currentScene && viewerRef.current) {
       viewerRef.current.loadScene(currentScene.tour_id);
@@ -485,6 +501,7 @@ const TourViewer = ({
   }), popupData && isBackend && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_PopupWrapper__WEBPACK_IMPORTED_MODULE_2__["default"], {
     scenes,
     setAttributes,
+    currentScene,
     hotspotData,
     popupData,
     setPopupData,
@@ -623,7 +640,9 @@ const saveHotspot = (popupData, scenes, currentScene, setAttributes, setPopupDat
       lookAt: {
         pitch: popupData.targetHotspot.pitch,
         yaw: popupData.targetHotspot.yaw
-      }
+      },
+      targetPitch: popupData.targetHotspot.pitch,
+      targetYaw: popupData.targetHotspot.yaw
     })
   };
   const newScenes = (0,immer__WEBPACK_IMPORTED_MODULE_0__.produce)(scenes, draft => {

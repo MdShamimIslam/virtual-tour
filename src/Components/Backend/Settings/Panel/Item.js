@@ -10,6 +10,8 @@ const Item = ({ attributes, setAttributes, arrKey, index, setActiveIndex = false
   const items = attributes[arrKey][index];
   const hotspots = items.hotSpots;
 
+  // console.log(hotspots);
+
   const updateHotspots = (val, ...props) => {
     setAttributes({ scenes: updateData(scenes, val, index, 'hotSpots', ...props) });
   };
