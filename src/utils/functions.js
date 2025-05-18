@@ -61,6 +61,7 @@ export const saveHotspot = (popupData, scenes, currentScene, setAttributes, setP
   const newHotspot = {
       pitch: popupData.pitch,
       yaw: popupData.yaw,
+      sceneId: popupData.sceneId,
       text: popupData.text,
       type: popupData.type,
       ...(popupData.type === 'scene' && popupData.targetHotspot && {

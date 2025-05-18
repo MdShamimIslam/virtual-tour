@@ -24,7 +24,7 @@ const General = ({ attributes, setAttributes, premiumProps, setCurrentScene }) =
             "pitch": -3,
             "yaw": 117,
             "type": "equirectangular",
-            "panorama": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Panorama_of_the_courtyard_of_the_Great_Mosque_of_Kairouan.jpg",
+            "panorama": "",
             "hotSpots": [
               {
                 "pitch": -2.1,
@@ -37,6 +37,7 @@ const General = ({ attributes, setAttributes, premiumProps, setCurrentScene }) =
           }}
           ItemSettings={Item}
           itemLabel="Scene"
+          title="tour_id"
           design="sortable"
         />
       </PanelBody>

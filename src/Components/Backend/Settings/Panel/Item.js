@@ -2,7 +2,7 @@ import { TextControl, __experimentalNumberControl as NumberControl, Button } fro
 import { __ } from "@wordpress/i18n";
 import { produce } from "immer";
 import { InlineMediaUpload } from "../../../../../../bpl-tools/Components";
-import { BControlPro } from "../../../../../../bpl-tools/ProControls";
+import { BControlPro, SelectControlPro } from "../../../../../../bpl-tools/ProControls";
 import { PanelRepeater } from "./PanelRepeater/PanelRepeater";
 import { updateData } from "../../../../../../bpl-tools/utils/functions";
 const Item = ({ attributes, setAttributes, arrKey, index, setActiveIndex = false, premiumProps }) => {
@@ -122,20 +122,20 @@ const Item = ({ attributes, setAttributes, arrKey, index, setActiveIndex = false
         {...premiumProps}
       />
 
-      
+
       <div style={{ marginTop: '10px' }}>
         <label>HotSpots</label>
         {hotspots?.map((val, i) =>
-          <PanelRepeater 
+          <PanelRepeater
             className="mt10"
-            title={`Item - ${i + 1}`}
-            length={hotspots.length} 
-            index={i} 
-            handleDelete={handleDelete} 
-            handleCopy={handleCopy} 
+            title={`HotSpot ${i + 1}`}
+            // length={hotspots.length} 
+            index={i}
+            handleDelete={handleDelete}
+            handleCopy={handleCopy}
             key={i}
           >
-            
+
             <NumberControl
               value={val?.pitch}
               label={__("Pitch : ", "panorama")}
@@ -146,7 +146,7 @@ const Item = ({ attributes, setAttributes, arrKey, index, setActiveIndex = false
             />
 
             <NumberControl
-            className="mt10"
+              className="mt10"
               value={val?.yaw}
               label={__("Yaw : ", "panorama")}
               labelPosition="left"
@@ -164,18 +164,40 @@ const Item = ({ attributes, setAttributes, arrKey, index, setActiveIndex = false
               {...premiumProps}
             />
 
-            <BControlPro
+            <SelectControlPro
+              className="mt20"
+              label={__("Type :", "panorama")}
+              labelPosition="left"
+              value={val?.type}
+              onChange={(value) => updateHotspots(value, i, 'type')}
+              options={[
+                { value: "scene", label: "Scene" },
+                { value: "info", label: "Info" },
+              ]}
+            />
+
+            {val?.type === 'scene' && <BControlPro
               className="mt10"
               label={__("Scene ID", "panorama")}
               value={val?.sceneId}
               onChange={(value) => updateHotspots(value, i, 'sceneId')}
               Component={TextControl}
               {...premiumProps}
-            />
+            />}
 
           </PanelRepeater>
         )}
-        <Button style={{background:"#363294", color:"white"}} onClick={addNewItem} >Add Hotspot</Button>
+        <Button
+          style={{
+            marginTop: hotspots?.length === 0 ? "10px" : undefined,
+            background: "#363294",
+            color: "white",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center"
+          }}
+          onClick={addNewItem}
+        > Add New Hotspot</Button>
       </div>
 
     </>
