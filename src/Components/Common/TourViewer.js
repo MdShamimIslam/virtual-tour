@@ -79,7 +79,7 @@ const TourViewer = ({ attributes, setAttributes, isBackend = false, currentScene
         return () => {
             if (viewer) viewer.destroy();
         };
-    }, [scenes, loaded]);
+    }, [scenes, loaded, currentScene]);
 
     useEffect(() => {
         if (isBackend && tempHotspot && viewerRef.current) {
