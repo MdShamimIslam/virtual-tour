@@ -37,22 +37,14 @@
 			"type": "array",
 			"default": [
 				{
-					"tour_id": "circle",
+					"tour_id": "scene_1",
 					"title": "Mason Circle",
 					"hfov": 110,
 					"pitch": 0,
 					"yaw": 5,
 					"type": "equirectangular",
 					"panorama": "",
-					"hotSpots": [
-						{
-							"pitch": -2.1,
-							"yaw": 132.9,
-							"type": "scene",
-							"text": "Spring House or Dairy",
-							"sceneId": "house"
-						}
-					]
+					"hotSpots": []
 				}
 				
 			]

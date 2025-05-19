@@ -463,9 +463,11 @@ const TourViewer = ({
     });
     const viewer = (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.initializePannellumViewer)(panoRef, modifiedScenes);
     window.viewer = viewer;
-    viewer.on('scenechange', sceneId => {
-      setCurrentScene(scenes.find(scene => scene.tour_id === sceneId));
-    });
+    {
+      isBackend && viewer.on('scenechange', sceneId => {
+        setCurrentScene(scenes.find(scene => scene.tour_id === sceneId));
+      });
+    }
     viewerRef.current = viewer;
     if (currentScene && viewerRef.current) {
       viewerRef.current.loadScene(currentScene.tour_id);
@@ -597,11 +599,10 @@ const updateData = (attr, value, ...props) => {
 const createModifiedHotspots = (scenes, currentScene, spot, isBackend, index, setPopupData, setAttributes) => ({
   ...spot,
   createTooltipFunc: hotSpotDiv => {
-    console.log(currentScene);
     const tooltip = document.createElement('div');
     tooltip.className = 'hotspot-title-tooltip';
-    // tooltip.innerHTML = spot.text || (spot.type === 'scene' ? 'Scene' : 'Info');
-    tooltip.innerHTML = currentScene?.tour_id;
+    tooltip.innerHTML = spot.text || (spot.type === 'scene' ? 'Scene' : 'Info');
+    // tooltip.innerHTML = currentScene?.tour_id;
     hotSpotDiv.appendChild(tooltip);
     hotSpotDiv.addEventListener('mouseenter', () => {
       tooltip.style.display = 'block';
@@ -650,7 +651,7 @@ const saveHotspot = (popupData, scenes, currentScene, setAttributes, setPopupDat
   const newScenes = (0,immer__WEBPACK_IMPORTED_MODULE_0__.produce)(scenes, draft => {
     draft.map(scene => {
       if (scene.tour_id === currentScene.tour_id) {
-        scene.hotSpots.push(newHotspot);
+        scene.hotSpots?.push(newHotspot);
       }
     });
   });

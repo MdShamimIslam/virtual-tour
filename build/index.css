@@ -171,7 +171,7 @@
   width: auto;
 }
 .bPlTabPanel.small .components-tab-panel__tabs button, .bPlTabPanel.mini .components-tab-panel__tabs button {
-  height: 30px;
+  height: 30px !important;
   text-transform: capitalize;
   justify-content: center;
   border-bottom: 0px;
@@ -582,6 +582,12 @@
   display: flex;
   justify-content: center;
   color: #fff;
+  background: #4527a4;
+}
+.bPlPanelBody .addItem button:hover,
+.bPlDropdownPopover .components-popover__content .addItem button:hover {
+  color: #fff;
+  background: #4527a4 !important;
 }
 .bPlPanelBody .addItem button:focus,
 .bPlDropdownPopover .components-popover__content .addItem button:focus {
@@ -724,7 +730,7 @@
   font-size: 11px;
   text-transform: capitalize;
 }
-.bPlBoxControl .boxLinkButton {
+.bPlBoxControl .bplBoxControlLinkButton {
   background: transparent;
   cursor: pointer;
   height: 32px;
@@ -737,22 +743,22 @@
   border-radius: 0 2px 2px 0;
   cursor: pointer;
 }
-.bPlBoxControl .boxLinkButton.activeLink {
+.bPlBoxControl .bplBoxControlLinkButton.activeLink {
   background-color: #4527a4;
 }
-.bPlBoxControl .boxLinkButton.activeLink .dashicons {
+.bPlBoxControl .bplBoxControlLinkButton.activeLink .dashicons {
   color: #fff;
 }
-.bPlBoxControl .boxLinkButton .dashicons {
+.bPlBoxControl .bplBoxControlLinkButton .dashicons {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 16px;
 }
-.bPlBoxControl .boxLinkButton .dashicons.dashicons-image-rotate {
+.bPlBoxControl .bplBoxControlLinkButton .dashicons.dashicons-image-rotate {
   color: #666;
 }
-.bPlBoxControl .boxLinkButton .dashicons.dashicons-image-rotate:hover {
+.bPlBoxControl .bplBoxControlLinkButton .dashicons.dashicons-image-rotate:hover {
   color: black;
 }
 /*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
@@ -1195,27 +1201,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
-.bPlSortablePanelItem .itemsPanelHeader .panel-header-title p {
+.bPlSortablePanelItem .itemsPanelHeader .panel-header-title .repeater-panel-title {
   cursor: pointer;
   margin: 0px;
   height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
+  width: 125px;
+  display: inline-block;
   padding-left: 5px;
   transition: background-color 0.2s ease-in-out;
-  overflow: hidden;
-}
-.bPlSortablePanelItem .itemsPanelHeader .panel-header-title p div {
+  padding-top: 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.bPlSortablePanelItem .itemsPanelHeader .panel-header-title p:hover {
+.bPlSortablePanelItem .itemsPanelHeader .panel-header-title .repeater-panel-title:hover {
   background-color: #ccc;
 }
 .bPlSortablePanelItem .itemsPanelHeader .panel-header-title .itemAction {
@@ -1614,9 +1614,9 @@
 .bplSelectPure .selectOptionHidden {
   display: none;
 }
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../bpl-tools/Components/SolidBackground/panelCustomColorControl.css ***!
-  \***********************************************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../bpl-tools/Components/SolidBackground/style.css ***!
+  \*****************************************************************************************************************************************************************************************************/
 .panel-custom-color-control-container {
 	border-radius: 5px;
 	width: 250px;
@@ -1862,6 +1862,17 @@
   width: 14px;
   height: 14px;
   font-size: 14px;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/Components/BplBlockPreview/style.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+.bPlBlockPreviewWrapper {
+  display: flex;
+  align-items: center;
+}
+.bPlBlockPreviewWrapper .bPl-previewBtn.bPl-activeBtn {
+  background: #4527a4;
+  color: #fff;
 }
 /*!**********************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../bpl-tools/ProControls/style.scss ***!

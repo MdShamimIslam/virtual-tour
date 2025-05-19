@@ -10,8 +10,6 @@ const Item = ({ attributes, setAttributes, arrKey, index, setActiveIndex = false
   const items = attributes[arrKey][index];
   const hotspots = items.hotSpots;
 
-  // console.log(hotspots);
-
   const updateHotspots = (val, ...props) => {
     setAttributes({ scenes: updateData(scenes, val, index, 'hotSpots', ...props) });
   };
@@ -34,11 +32,11 @@ const Item = ({ attributes, setAttributes, arrKey, index, setActiveIndex = false
   const addNewItem = () => {
     const newItems = produce(scenes, (draft) => {
       draft[index].hotSpots.push({
-        pitch: -2.1,
-        yaw: 132.9,
+        pitch: 0,
+        yaw: 0,
         type: "scene",
         text: "Spring House or Dairy",
-        sceneId: "house"
+        sceneId: ""
       });
     });
 
@@ -67,7 +65,7 @@ const Item = ({ attributes, setAttributes, arrKey, index, setActiveIndex = false
   return (
     <>
       <BControlPro
-        label={__("Tour ID", "panorama")}
+        label={__("Scene ID", "panorama")}
         help={__("Input Your Unique id. Don't use space!!", "panorama")}
         value={items.tour_id}
         onChange={(v) => updateTour("tour_id", v)}
@@ -130,7 +128,7 @@ const Item = ({ attributes, setAttributes, arrKey, index, setActiveIndex = false
         {hotspots?.map((val, i) =>
           <PanelRepeater
             className="mt10"
-            title={`HotSpot ${i + 1}`}
+            title={`HotSpot - ${i + 1}`}
             // length={hotspots.length} 
             index={i}
             handleDelete={handleDelete}

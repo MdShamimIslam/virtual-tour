@@ -21,11 +21,10 @@ export const updateData = (attr, value, ...props) => {
 export const createModifiedHotspots = (scenes, currentScene, spot, isBackend, index, setPopupData, setAttributes) => ({
   ...spot,
   createTooltipFunc: (hotSpotDiv) => {
-    console.log(currentScene);
     const tooltip = document.createElement('div');
     tooltip.className = 'hotspot-title-tooltip';
-    // tooltip.innerHTML = spot.text || (spot.type === 'scene' ? 'Scene' : 'Info');
-    tooltip.innerHTML = currentScene?.tour_id;
+    tooltip.innerHTML = spot.text || (spot.type === 'scene' ? 'Scene' : 'Info');
+    // tooltip.innerHTML = currentScene?.tour_id;
     hotSpotDiv.appendChild(tooltip);
     hotSpotDiv.addEventListener('mouseenter', () => {
         tooltip.style.display = 'block';
@@ -80,7 +79,7 @@ export const saveHotspot = (popupData, scenes, currentScene, setAttributes, setP
   const newScenes = produce(scenes, (draft) => {
       draft.map((scene) => {
          if(scene.tour_id === currentScene.tour_id){
-              scene.hotSpots.push(newHotspot);
+              scene.hotSpots?.push(newHotspot);
          }
       })
   })

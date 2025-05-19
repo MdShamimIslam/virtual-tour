@@ -19,7 +19,7 @@ const TourViewer = ({ attributes, setAttributes, isBackend = false, currentScene
         if (currentScene && viewerRef.current) {
             viewerRef.current.loadScene(currentScene.tour_id);
         }
-        if(currentScene){
+        if (currentScene) {
             setLoaded(true);
         }
     }, [currentScene])
@@ -53,10 +53,12 @@ const TourViewer = ({ attributes, setAttributes, isBackend = false, currentScene
         const viewer = initializePannellumViewer(panoRef, modifiedScenes);
         window.viewer = viewer;
 
-        viewer.on('scenechange', (sceneId) => {
-            setCurrentScene(scenes.find((scene) => scene.tour_id === sceneId))
-        })
-        
+        {
+            isBackend && viewer.on('scenechange', (sceneId) => {
+                setCurrentScene(scenes.find((scene) => scene.tour_id === sceneId))
+            })
+        }
+
         viewerRef.current = viewer;
         if (currentScene && viewerRef.current) {
             viewerRef.current.loadScene(currentScene.tour_id);
@@ -94,6 +96,7 @@ const TourViewer = ({ attributes, setAttributes, isBackend = false, currentScene
     return (
         <div className='tourViewerWrapper' >
             <div className='tourViewer' ref={panoRef} />
+
             {popupData && isBackend && <PopupWrapper {...{ scenes, setAttributes, currentScene, hotspotData, popupData, setPopupData, isDropdownOpen, setIsDropdownOpen, setTempHotspot, handleSaveHotspot }} />}
         </div>
     );
